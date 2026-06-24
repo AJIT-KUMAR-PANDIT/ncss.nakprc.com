@@ -1,8 +1,8 @@
 import dynamic from "next/dynamic";
 import { notFound } from "next/navigation";
 import { getComponentDetails, getSidebarNavigation } from "@/lib/ncss-engine";
+import { getDynamicComponent } from "@/lib/registry";
 import CodeBlock from "@/components/CodeBlock";
-import { registry } from "@/lib/registry";
 
 // Generate static params for all components
 export function generateStaticParams() {
@@ -33,14 +33,7 @@ export default async function ComponentPage({ params }) {
     notFound();
   }
 
-  const decodedCategorySlug = decodeURIComponent(categorySlug);
-  const decodedComponentSlug = decodeURIComponent(componentSlug);
-  const registryKey = `${decodedCategorySlug}/${decodedComponentSlug}`;
-  
-  console.log("Looking for key:", registryKey);
-  console.log("Available keys:", Object.keys(registry));
-
-  const ComponentPreview = registry[registryKey] || (() => <div className="text-red-500">Component preview not found in registry.</div>);
+  const ComponentPreview = getDynamicComponent(details.category, details.title);
 
   return (
     <div className="space-y-12 pb-20">
