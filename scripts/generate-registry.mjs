@@ -23,8 +23,8 @@ function generateRegistry() {
       .filter((dirent) => dirent.isDirectory())
       .map((dirent) => {
         const title = dirent.name;
-        const categorySlug = encodeURIComponent(category.toLowerCase().replace(/\s+/g, "-"));
-        const componentSlug = encodeURIComponent(title.toLowerCase().replace(/\s+/g, "-"));
+        const categorySlug = category.toLowerCase().replace(/[^a-z0-9]+/g, "-").replace(/^-+|-+$/g, "");
+        const componentSlug = title.toLowerCase().replace(/[^a-z0-9]+/g, "-").replace(/^-+|-+$/g, "");
         
         const componentFolder = path.join(categoryPath, title);
         let sourceCode = "// Component source not found";
