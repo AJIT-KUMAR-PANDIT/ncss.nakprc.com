@@ -39,7 +39,7 @@ export default function Home() {
 
         <div className="flex items-center justify-center gap-4 pt-8">
           <Link
-            href="/docs/snake-engine™-series/box-snake-background"
+            href="/docs/snake-engine-series/box-snake-background"
             className="group relative inline-flex items-center justify-center gap-2 px-8 py-4 bg-white text-black font-semibold rounded-full overflow-hidden transition-all hover:scale-105 active:scale-95"
           >
             Explore Components
